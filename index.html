@@ -4,9 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>달려라!헬스냥</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="image/favicon.ico" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <canvas id="canvas" height="200"></canvas>
+    <!-- 게임 -->
+    <div class="game-wrap">
+      <div class="bakcground">
+        <div class="ground"></div>
+        <div class="sun"></div>
+      </div>
+      <div class="score">
+        <p>SCORE</p>
+        <span></span>
+      </div>
+      <canvas id="canvas" height="200"></canvas>
+    </div>
+    <!-- 안내 -->
+    <h3 class="info">SPACE BAR</h3>
+    <!-- 게임오버 -->
+    <div class="game-over">
+      <div class="pop-up">
+        <img src="/image/gameOver.svg" alt="박스에갇힌냥" />
+        <h2>앗! 박스에 갇혔다!</h2>
+        <p><span class="total-score"></span> 점</p>
+        <button class="replay">다시하기</button>
+      </div>
+    </div>
   </body>
   <script src="/main.js"></script>
 </html>
