@@ -91,7 +91,7 @@ let muscleCat = {
 // 장애물
 let boxImage = new Image();
 boxImage.onload = checkAllImgLoad;
-boxImage.src = "/image/box.svg";
+boxImage.src = "./image/box.svg";
 class Box {
   constructor() {
     this.width = 32;
