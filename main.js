@@ -2,6 +2,25 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 
+// 이미지 로딩 & 게임시작 동기화
+let imgLoad = 0;
+const totalImg = 4;
+
+function checkAllImgLoad() {
+  imgLoad++;
+  if (imgLoad === totalImg) {
+    frameRun();
+  }
+}
+
+const background = new Image();
+background.onload = () => {
+  const sun = document.querySelector(".sun");
+  sun.style.backgroundImage = `url("${background.src}")`;
+  checkAllImgLoad();
+};
+background.src = "./image/sun.svg";
+
 // 헬스냥
 const catSvg1 = `<svg width="145" height="166" viewBox="0 0 145 166" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M37.5 30L32 19.5L19 31.5L2 49.5C4.4 63.1 11.6667 74.8333 15 79C22.3333 80.8333 37.2 84.7 38 85.5C38.8 86.3 38.3333 89.8333 38 91.5L44 101L46 109C39.6 115.4 43.3333 125.667 46 130L71 142L70 158.5L86.5 163L98 142L94 131.5L96 126L109.5 88L114 84.5L126 80.5L137.5 65.5L140.5 40L122 22.5L114.5 20.5L107.5 29L114.5 35L119.5 49L109.5 51L41 53L25 51L31 41L32 34.5L37.5 30Z" fill="white"/>
@@ -37,6 +56,7 @@ const catSvg2 = `<svg width="145" height="169" viewBox="0 0 145 169" fill="none"
 `;
 // catSvg1과 catSvg2를 이미지 객체로 변환
 const catImages = [new Image(), new Image()];
+catImages[0].onload = catImages[1].onload = checkAllImgLoad;
 catImages[0].src = "data:image/svg+xml," + encodeURIComponent(catSvg1);
 catImages[1].src = "data:image/svg+xml," + encodeURIComponent(catSvg2);
 
@@ -70,6 +90,7 @@ let muscleCat = {
 
 // 장애물
 let boxImage = new Image();
+boxImage.onload = checkAllImgLoad;
 boxImage.src = "/image/box.svg";
 class Box {
   constructor() {
