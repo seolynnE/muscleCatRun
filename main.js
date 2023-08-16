@@ -216,7 +216,10 @@ function resetGame() {
   jumpSwitch = false;
   lastSpacePressTime = 0;
 
-  frameRun();
+  catImages.forEach((image) => {
+    image.onload = checkAllImgLoad;
+  });
+  boxImage.onload = checkAllImgLoad;
 
   const sun = document.querySelector(".sun");
   const gameOver = document.querySelector(".game-over");
